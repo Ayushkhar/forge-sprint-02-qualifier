@@ -20,14 +20,14 @@ hermes.config.json        — hermes model + memory settings
 agent-log.md              — slack chat log
 ```
 
-## how to run
+## how we can run
 
 set your groq key first:
 ```
 $env:GROQ_API_KEY="your_key"
 ```
 
-start hermes:
+Start hermes:
 ```
 npx hermes-agent@latest chat
 ```
