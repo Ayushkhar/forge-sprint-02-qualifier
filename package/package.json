@@ -1,0 +1,42 @@
+{
+  "name": "hermes-agent",
+  "version": "0.18.2",
+  "description": "Unofficial npm bridge for Hermes Agent 0.18.2: The self-improving AI agent \u2014 creates skills from experience, improves them during use, and runs anywhere",
+  "license": "MIT",
+  "type": "commonjs",
+  "bin": {
+    "hermes": "bin/hermes.js",
+    "hermes-agent": "bin/hermes-agent.js"
+  },
+  "scripts": {
+    "build:alias": "node scripts/build-alias-package.js",
+    "postinstall": "node scripts/postinstall.js",
+    "test": "node --test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wyrtensi/hermes-agent-npm.git"
+  },
+  "bugs": {
+    "url": "https://github.com/wyrtensi/hermes-agent-npm/issues"
+  },
+  "homepage": "https://github.com/wyrtensi/hermes-agent-npm#readme",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "files": [
+    "bin/",
+    "lib/",
+    "scripts/postinstall.js",
+    "DISCLAIMER.md",
+    "LICENSE",
+    "NOTICE",
+    "PRIVACY.md",
+    "README.md",
+    "SECURITY.md"
+  ],
+  "hermesAgent": {
+    "pythonPackageVersion": "0.18.2",
+    "upstreamRepository": "nousresearch/hermes-agent"
+  }
+}
