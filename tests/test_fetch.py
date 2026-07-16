@@ -2,7 +2,8 @@ import unittest
 import sys
 import os
 
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), '../scripts'))
+# add scripts dir to path so we can import fetch_titles
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'scripts'))
 from fetch_titles import fetch_title
 
 class TestFetch(unittest.TestCase):
