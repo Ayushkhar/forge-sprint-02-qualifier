@@ -1,15 +1,13 @@
 {
-  "model": {
     "provider": "groq",
     "model": "llama-3.3-70b-versatile",
-    "apiKey": "${GROQ_API_KEY}"
-  },
-  "memory": {
-    "enabled": true,
-    "persistence": "local"
-  },
-  "skills": {
-    "autoLearn": true,
-    "directory": "./skills"
-  }
+    "apiKey": "${GROQ_API_KEY}",
+    "memory": {
+        "enabled": true,
+        "persistence": "local"
+    },
+    "skills": {
+        "autoLearn": true,
+        "directory": "./skills"
+    }
 }

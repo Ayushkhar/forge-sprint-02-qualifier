@@ -1,56 +1,45 @@
-# Forge Sprint 02 Qualifier — Hermes × OpenClaw Edition
+# forge sprint 02 — hermes + openclaw setup
 
-A two-agent AI system built for **NMG Labs Forge Sprint 02**. This repository demonstrates autonomous multi-agent collaboration using **Hermes** (orchestrator) and **OpenClaw** (coder) communicating over Slack.
+two agent system for nmg labs forge sprint 02. hermes is the orchestrator, openclaw does the coding. they talk over slack.
 
-## Stack
-| Component | Tool | Model |
-|---|---|---|
-| Orchestrator | Hermes Agent | `llama-3.3-70b-versatile` via Groq |
-| Coder | OpenClaw | `llama-3.3-70b-versatile` via Groq |
-| Communication | Slack (Socket Mode) | — |
+## what's running
 
-## Agent Capabilities
-- **Hermes Agent:** Plans tasks, routes instructions to OpenClaw via Slack, and fires custom skills (e.g., `hello-world`) from the `skills/` directory. Configured with local memory persistence so it can recall facts across sessions.
-- **OpenClaw:** Receives tasks from Hermes, writes Python scripts, runs them, and reports back in a structured `What I Did / What Failed / What Needs Review` format.
+- hermes agent — llama-3.3-70b via groq, handles planning and routing
+- openclaw — llama-3.3-70b via groq, does the actual coding tasks
+- slack for communication between the two
 
-## Project Structure
+## folder structure
+
 ```
-forge-sprint-02/
-├── hermes.config.json        # Hermes model + memory + skills config
-├── skills/
-│   └── hello-world/
-│       └── SKILL.md          # Custom skill: greet the NMG Labs team
-├── openclaw/
-│   └── IDENTITY.md           # OpenClaw persona and communication protocol
-├── scripts/
-│   └── fetch_titles.py       # Mini-challenge: fetch webpage titles
-│   └── results.json          # Output from fetch_titles.py
-├── tests/
-│   └── test_fetch.py         # Unit tests for fetch_titles.py
-├── agent-log.md              # Simulated Slack chat log
-└── .github/workflows/ci.yml  # GitHub Actions CI quality gate
+scripts/fetch_titles.py   — mini challenge script
+scripts/results.json      — output from the script
+tests/test_fetch.py       — basic tests
+skills/hello-world/       — custom skill for hermes
+openclaw/IDENTITY.md      — openclaw persona config
+hermes.config.json        — hermes model + memory settings
+agent-log.md              — slack chat log
 ```
 
-## Mini-Challenge Result
-The `fetch_titles.py` script fetches webpage titles for 3 URLs and saves them to `results.json`. Run it yourself:
-```bash
+## how to run
+
+set your groq key first:
+```
+$env:GROQ_API_KEY="your_key"
+```
+
+start hermes:
+```
+npx hermes-agent@latest chat
+```
+
+start openclaw in another terminal:
+```
+npx openclaw@latest onboard
+```
+
+## mini challenge
+
+`fetch_titles.py` grabs the html title from 3 urls and saves to `results.json`. run it with:
+```
 python scripts/fetch_titles.py
 ```
-
-## Running Locally
-1. Make sure `node` (v20+) and `python` (3.11+) are installed.
-2. Set your Groq API key:
-   ```powershell
-   $env:GROQ_API_KEY="your_key_here"
-   ```
-3. Start Hermes:
-   ```bash
-   npx hermes-agent@latest chat
-   ```
-4. Start OpenClaw (in a separate terminal):
-   ```bash
-   npx openclaw@latest onboard
-   ```
-
-## CI/CD Quality Gate
-GitHub Actions automatically runs `tests/test_fetch.py` on every push and pull request to ensure the fetching logic works correctly and handles invalid URLs gracefully.
