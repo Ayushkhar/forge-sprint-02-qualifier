@@ -1,7 +1,7 @@
 {
   "model": {
     "provider": "groq",
-    "model": "openai/gpt-oss-120b",
+    "model": "llama-3.3-70b-versatile",
     "apiKey": "${GROQ_API_KEY}"
   },
   "memory": {

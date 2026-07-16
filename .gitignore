@@ -1,0 +1,14 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.env
+
+# NPM / Node
+node_modules/
+*.tgz
+package/
+
+# OS
+.DS_Store
+Thumbs.db

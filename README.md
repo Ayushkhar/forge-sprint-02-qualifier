@@ -1,28 +1,56 @@
-# Forge Sprint 02 Qualifier Build
+# Forge Sprint 02 Qualifier — Hermes × OpenClaw Edition
 
-This repository contains the required setup for the Forge Sprint 02 Edition 1 Qualifier. 
+A two-agent AI system built for **NMG Labs Forge Sprint 02**. This repository demonstrates autonomous multi-agent collaboration using **Hermes** (orchestrator) and **OpenClaw** (coder) communicating over Slack.
 
-## Models Used
-- **Orchestrator (Hermes Agent):** GPT-OSS 120B via Groq API. Chosen for its high-dimensional reasoning and planning capabilities.
-- **Coder (OpenClaw):** Qwen2.5-Coder 7B via Ollama. Chosen for local, fast, and cost-efficient execution.
+## Stack
+| Component | Tool | Model |
+|---|---|---|
+| Orchestrator | Hermes Agent | `llama-3.3-70b-versatile` via Groq |
+| Coder | OpenClaw | `llama-3.3-70b-versatile` via Groq |
+| Communication | Slack (Socket Mode) | — |
 
 ## Agent Capabilities
-- **Hermes Agent:** Acts as the orchestrator. Plans tasks, decomposes goals, and routes instructions to OpenClaw. Configured with a `hello-world` skill and local persistence for memory.
-- **OpenClaw:** Acts as the coder. Receives tasks via Slack, executes the python script, and reports back using the "What I Did / What Failed / What Needs Review" format.
+- **Hermes Agent:** Plans tasks, routes instructions to OpenClaw via Slack, and fires custom skills (e.g., `hello-world`) from the `skills/` directory. Configured with local memory persistence so it can recall facts across sessions.
+- **OpenClaw:** Receives tasks from Hermes, writes Python scripts, runs them, and reports back in a structured `What I Did / What Failed / What Needs Review` format.
 
-## Configuration Details
-- **Memory:** `persistence` is set to local. The agent is able to recall facts across sessions.
-- **Skills:** Found under `skills/hello-world`. Fired automatically when a greeting is requested.
-- **Slack Communication:** Full logs available in `agent-log.md`.
+## Project Structure
+```
+forge-sprint-02/
+├── hermes.config.json        # Hermes model + memory + skills config
+├── skills/
+│   └── hello-world/
+│       └── SKILL.md          # Custom skill: greet the NMG Labs team
+├── openclaw/
+│   └── IDENTITY.md           # OpenClaw persona and communication protocol
+├── scripts/
+│   └── fetch_titles.py       # Mini-challenge: fetch webpage titles
+│   └── results.json          # Output from fetch_titles.py
+├── tests/
+│   └── test_fetch.py         # Unit tests for fetch_titles.py
+├── agent-log.md              # Simulated Slack chat log
+└── .github/workflows/ci.yml  # GitHub Actions CI quality gate
+```
 
-## Mini-Challenge
-The `fetch_titles.py` script was written by OpenClaw to fetch webpage titles for 3 URLs and save them to `results.json`.
+## Mini-Challenge Result
+The `fetch_titles.py` script fetches webpage titles for 3 URLs and saves them to `results.json`. Run it yourself:
+```bash
+python scripts/fetch_titles.py
+```
+
+## Running Locally
+1. Make sure `node` (v20+) and `python` (3.11+) are installed.
+2. Set your Groq API key:
+   ```powershell
+   $env:GROQ_API_KEY="your_key_here"
+   ```
+3. Start Hermes:
+   ```bash
+   npx hermes-agent@latest chat
+   ```
+4. Start OpenClaw (in a separate terminal):
+   ```bash
+   npx openclaw@latest onboard
+   ```
 
 ## CI/CD Quality Gate
-This repository includes a GitHub Actions workflow (`.github/workflows/ci.yml`) and automated Python unit tests (`tests/test_fetch.py`). The tests run automatically on every push and pull request to ensure that the fetching logic works correctly and handles invalid URLs gracefully, meeting the strict requirement for an automated quality gate.
-
-## How to Run
-1. Ensure `node` and `git` are installed.
-2. Ensure you have the `GROQ_API_KEY` set.
-3. Start Hermes: `npx hermes-agent@latest`
-4. Start OpenClaw: `npx openclaw@latest`
+GitHub Actions automatically runs `tests/test_fetch.py` on every push and pull request to ensure the fetching logic works correctly and handles invalid URLs gracefully.
