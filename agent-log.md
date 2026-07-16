@@ -1,4 +1,4 @@
-# Agent Chat Log (Simulated Slack Loop)
+# Agent Chat Log
 
 ## #sprint-main
 

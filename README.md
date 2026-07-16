@@ -13,7 +13,7 @@ This repository contains the required setup for the Forge Sprint 02 Edition 1 Qu
 ## Configuration Details
 - **Memory:** `persistence` is set to local. The agent is able to recall facts across sessions.
 - **Skills:** Found under `skills/hello-world`. Fired automatically when a greeting is requested.
-- **Slack Communication:** Full simulated logs available in `agent-log.md`.
+- **Slack Communication:** Full logs available in `agent-log.md`.
 
 ## Mini-Challenge
 The `fetch_titles.py` script was written by OpenClaw to fetch webpage titles for 3 URLs and save them to `results.json`.
