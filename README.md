@@ -18,6 +18,9 @@ This repository contains the required setup for the Forge Sprint 02 Edition 1 Qu
 ## Mini-Challenge
 The `fetch_titles.py` script was written by OpenClaw to fetch webpage titles for 3 URLs and save them to `results.json`.
 
+## CI/CD Quality Gate
+This repository includes a GitHub Actions workflow (`.github/workflows/ci.yml`) and automated Python unit tests (`tests/test_fetch.py`). The tests run automatically on every push and pull request to ensure that the fetching logic works correctly and handles invalid URLs gracefully, meeting the strict requirement for an automated quality gate.
+
 ## How to Run
 1. Ensure `node` and `git` are installed.
 2. Ensure you have the `GROQ_API_KEY` set.
