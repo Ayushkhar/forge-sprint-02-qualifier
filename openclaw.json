@@ -1,0 +1,73 @@
+{
+  "agents": {
+    "defaults": {
+      "workspace": "./openclaw/workspace",
+      "models": {
+        "groq/llama-3.3-70b-versatile": {}
+      },
+      "model": {
+        "primary": "groq/llama-3.3-70b-versatile"
+      }
+    }
+  },
+  "gateway": {
+    "mode": "local",
+    "auth": {
+      "mode": "token",
+      "token": "YOUR_OPENCLAW_TOKEN"
+    },
+    "port": 18789,
+    "bind": "loopback",
+    "nodes": {
+      "denyCommands": [
+        "camera.snap",
+        "camera.clip",
+        "screen.record",
+        "contacts.add",
+        "calendar.add",
+        "reminders.add",
+        "sms.send",
+        "sms.search"
+      ]
+    }
+  },
+  "session": {
+    "dmScope": "per-channel-peer"
+  },
+  "tools": {
+    "profile": "coding"
+  },
+  "plugins": {
+    "entries": {
+      "groq": {
+        "enabled": true
+      },
+      "slack": {
+        "enabled": true
+      }
+    }
+  },
+  "auth": {
+    "profiles": {
+      "groq:default": {
+        "provider": "groq",
+        "mode": "api_key"
+      }
+    }
+  },
+  "channels": {
+    "slack": {
+      "enabled": true,
+      "botToken": "YOUR_SLACK_BOT_TOKEN",
+      "appToken": "YOUR_SLACK_APP_TOKEN",
+      "groupPolicy": "open",
+      "dmPolicy": "allowlist",
+      "allowFrom": [
+        "YOUR_SLACK_USER_ID"
+      ],
+      "capabilities": {
+        "interactiveReplies": true
+      }
+    }
+  }
+}
