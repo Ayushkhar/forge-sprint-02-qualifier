@@ -2,7 +2,7 @@
 
 This repository implements a fully automated two-agent coordination loop utilizing **Hermes** (the brain) and **OpenClaw** (the hands) wired directly into Slack to solve coding tasks under human-in-the-loop validation.
 
-## 🛠️ Architecture Overview
+## Architecture Overview
 
 The division of labor, communication pipelines, and configurations are detailed in [ARCHITECTURE.md](file:///c:/Users/khare/Desktop/Resume_PLC/nmg/forge-sprint-02/ARCHITECTURE.md).
 
@@ -12,7 +12,7 @@ The division of labor, communication pipelines, and configurations are detailed 
 
 ---
 
-## 📂 Project Structure
+## Project Structure
 
 ```
 ├── ARCHITECTURE.md          # Division of labor, model routing, Slack scheme
@@ -33,7 +33,7 @@ The division of labor, communication pipelines, and configurations are detailed 
 
 ---
 
-## 🚀 Setup & Execution Guide
+## Setup & Execution Guide
 
 ### 1. Set Up Environment Variables
 Create a local `.env` file (copied from `.env.example`) or export these keys in your shell:
@@ -63,7 +63,7 @@ openclaw gateway
 
 ---
 
-## 🎯 Verification & Testing
+## Verification & Testing
 
 ### Test Suite Execution
 Verify the scraper functionality using the automated test suite:
