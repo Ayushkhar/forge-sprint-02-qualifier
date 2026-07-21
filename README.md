@@ -20,15 +20,21 @@ The division of labor, communication pipelines, and configurations are detailed 
 ├── openclaw.json            # OpenClaw agent and Slack config (secrets removed)
 ├── hermes.config.yaml       # Hermes model and orchestrator config (secrets removed)
 ├── .env.example             # Template for required environment secrets
-├── fetch_titles.py          # Solution Python scraper script
-├── results.json             # Generated output JSON file
+├── fetch_titles.py          # Solution Python scraper script (root copy)
+├── results.json             # Generated output JSON file (root copy)
 ├── scripts/
-│   └── demo.py              # CLI-based local simulation of the agent loop
+│   ├── demo.py              # CLI-based local simulation of the agent loop
+│   ├── fetch_titles.py      # Solution Python scraper script
+│   └── results.json         # Generated output JSON file
 ├── tests/
 │   └── test_fetch.py        # Automated test suite verifying the solution
 └── evidence/
-    ├── agent-run-transcript.json # Clean runtime token log and timestamp transcript
-    └── Windows PowerShell - 16 July 2026.mp4 # Session walkthrough video
+    ├── agent_run_transcript.json # Clean runtime token log and timestamp transcript
+    ├── hermes-session.log   # Raw runtime activity log
+    ├── Screenshot (236).png # Execution screenshot showing Slack integration
+    ├── Screenshot (237).png # Execution screenshot showing Slack integration
+    ├── Screenshot (238).png # Execution screenshot showing Slack integration
+    └── walkthrough.mp4      # Session walkthrough video demonstration (60-90s)
 ```
 
 ---
@@ -76,4 +82,4 @@ To simulate the planning -> execution -> review loop locally without hitting Sla
 ```powershell
 python scripts/demo.py
 ```
-This script calls Groq/OpenRouter endpoints directly, outputs timestamps, log tracks, and token counts, saving the transcript to `evidence/agent-run-transcript.json`.
+This script calls Groq/OpenRouter endpoints directly, outputs timestamps, log tracks, and token counts, saving the transcript to `evidence/agent_run_transcript.json`.
